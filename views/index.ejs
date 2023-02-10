@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ejs</title>
+		<script
+			type="text/javascript"
+			src="https://cdn.socket.io/socket.io-3.0.1.min.js"
+		></script>
+	</head>
+	<body>
+		<header
+			style="
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+					Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+					sans-serif;
+				font-size: 30px;
+				padding-bottom: 10px;
+			"
+		>
+			Socket and ejs
+		</header>
+		<input type="text" class="message" />
+		<button onclick="sendMessage()">Send message</button>
+
+		<h1></h1>
+
+		<script>
+			const socket = io("localhost:5000");
+
+			socket.on("connection");
+			socket.on("message", (data) => {
+				document.querySelector("h1").innerHTML = data;
+			});
+
+			const sendMessage = () => {
+				socket.emit("message", document.querySelector("input").value);
+			};
+		</script>
+	</body>
+</html>
